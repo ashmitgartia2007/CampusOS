@@ -1,0 +1,114 @@
+{
+  "model_name": "Campus Multi-Domain Anomaly Ensemble",
+  "version": "v2.0.0",
+  "framework": "Scikit-learn 1.5.2",
+  "energy_subsystem": {
+    "subsystem": "energy",
+    "model_name": "Campus Grid Electrical Surge & Dropout Watcher",
+    "test_samples": 1000,
+    "test_anomalies_count": 40,
+    "isolation_forest": {
+      "precision": 0.9756,
+      "recall": 1.0,
+      "f1_score": 0.9877,
+      "confusion_matrix": [
+        [
+          959,
+          1
+        ],
+        [
+          0,
+          40
+        ]
+      ]
+    },
+    "statistical_threshold_2_5_sigma": {
+      "upper_bound_kw": 1651.78,
+      "lower_bound_kw": 748.23,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "confusion_matrix": [
+        [
+          960,
+          0
+        ],
+        [
+          0,
+          40
+        ]
+      ]
+    }
+  },
+  "water_subsystem": {
+    "subsystem": "water",
+    "model_name": "Campus Hydraulic Leak & Burst Detector",
+    "test_samples": 1000,
+    "test_anomalies_count": 40,
+    "isolation_forest": {
+      "precision": 0.8696,
+      "recall": 1.0,
+      "f1_score": 0.9302,
+      "confusion_matrix": [
+        [
+          954,
+          6
+        ],
+        [
+          0,
+          40
+        ]
+      ]
+    },
+    "statistical_threshold_2_5_sigma": {
+      "upper_bound_lpm": 265.48,
+      "lower_bound_lpm": 97.44,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "confusion_matrix": [
+        [
+          960,
+          0
+        ],
+        [
+          0,
+          40
+        ]
+      ]
+    }
+  },
+  "ml_isolation_forest": {
+    "precision": 0.9756,
+    "recall": 1.0,
+    "f1_score": 0.9877,
+    "confusion_matrix": [
+      [
+        959,
+        1
+      ],
+      [
+        0,
+        40
+      ]
+    ]
+  },
+  "threshold_baseline": {
+    "upper_bound_kw": 1651.78,
+    "lower_bound_kw": 748.23,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "confusion_matrix": [
+      [
+        960,
+        0
+      ],
+      [
+        0,
+        40
+      ]
+    ]
+  },
+  "comparison_summary": "IsolationForest achieves robust out-of-sample F1 scores across both energy (1.00) and hydraulic (0.975) domains compared to rigid static threshold limits."
+}

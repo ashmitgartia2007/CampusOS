@@ -1,0 +1,138 @@
+{
+  "passed": [
+    {
+      "test": "Health Probe",
+      "details": "HTTP 200 - App: CampusOS AI"
+    },
+    {
+      "test": "Auth Login (admin)",
+      "details": "Role verified: admin"
+    },
+    {
+      "test": "Auth Login (operator)",
+      "details": "Role verified: operator"
+    },
+    {
+      "test": "Auth Login (viewer)",
+      "details": "Role verified: viewer"
+    },
+    {
+      "test": "RBAC - Viewer blocked from /auth/users",
+      "details": "HTTP 403 Forbidden as expected"
+    },
+    {
+      "test": "RBAC - Operator can list users",
+      "details": "HTTP 200 - 8 users listed"
+    },
+    {
+      "test": "RBAC - Operator blocked from creating user",
+      "details": "HTTP 403 Forbidden as expected"
+    },
+    {
+      "test": "RBAC - Admin create user",
+      "details": "Created audit_1793288768@campusos.ai"
+    },
+    {
+      "test": "Buildings API - Create",
+      "details": "Created building ID: b-aud-768"
+    },
+    {
+      "test": "Buildings API - Read & Verify Persistence",
+      "details": "Retrieved identical attributes from DB"
+    },
+    {
+      "test": "Buildings API - Update Status",
+      "details": "Status successfully changed to 'warning'"
+    },
+    {
+      "test": "Buildings API - Delete",
+      "details": "Deleted building b-aud-768"
+    },
+    {
+      "test": "Rooms API - Create",
+      "details": "Created room ID: r-67faf8"
+    },
+    {
+      "test": "Rooms API - Thermostat & Lighting Control",
+      "details": "Thermostat=20.5\u00b0C, Mode=Eco, Lighting=Off"
+    },
+    {
+      "test": "Rooms API - Delete",
+      "details": "Deleted room r-67faf8"
+    },
+    {
+      "test": "Maintenance API - Create Work Order",
+      "details": "Created WO-2026-9477 (mo-3293de)"
+    },
+    {
+      "test": "Maintenance API - Status Workflow",
+      "details": "Progressed Open -> In Progress -> Resolved"
+    },
+    {
+      "test": "Water API - Report Leak Alert",
+      "details": "Leak alert ID: leak-c4aff5"
+    },
+    {
+      "test": "Water API - Solenoid Valve Isolation Actuation",
+      "details": "Valve status successfully set to Isolated"
+    },
+    {
+      "test": "Waste API - Deploy Bin Station",
+      "details": "Station ID: wc-aee659"
+    },
+    {
+      "test": "Waste API - Empty Station Action",
+      "details": "Bins reset to 5%, status reset to Normal"
+    },
+    {
+      "test": "Environment API - Deploy Sensor",
+      "details": "Sensor ID: env-58bfdf"
+    },
+    {
+      "test": "Notifications API - Create",
+      "details": "Notification ID: notif-3752ef"
+    },
+    {
+      "test": "Notifications API - Mark Read",
+      "details": "Marked as read successfully"
+    },
+    {
+      "test": "Reports API - Register Audit",
+      "details": "Audit report registered: rep-048d21"
+    },
+    {
+      "test": "Reports API - Export CSV",
+      "details": "Valid CSV returned (7 lines)"
+    },
+    {
+      "test": "Settings API - Retrieve",
+      "details": "Campus: Metropolitan University of Technology & Innovation"
+    },
+    {
+      "test": "Settings API - Update & Persist",
+      "details": "Peak threshold updated to 1800 kW"
+    },
+    {
+      "test": "ML Model Registry",
+      "details": "Models verified: Campus Grid Load Forecaster, Chiller Vibration & Surge Watcher, Building Occupancy Multimodal Estimator, Water Acoustic Leak Classifier"
+    },
+    {
+      "test": "ML Load Forecasting",
+      "details": "Projected Demand: 1301.6 kW (95% CI: [1277.4, 1325.9])"
+    },
+    {
+      "test": "ML Anomaly Detection (IsolationForest)",
+      "details": "Evaluated 7 readings -> Flagged 2 anomalies"
+    },
+    {
+      "test": "ML vs Statistical Benchmark",
+      "details": "IsolationForest F1=0.9877 vs 2.5\u03c3 Baseline F1=1.0"
+    },
+    {
+      "test": "WebSocket Telemetry Pulse (/ws/telemetry)",
+      "details": "Received 2 pulse frames. Type: TELEMETRY_PULSE, Demand: 1443.2 kW, Label: [SIMULATED TELEMETRY]"
+    }
+  ],
+  "failed": [],
+  "audit_details": {}
+}

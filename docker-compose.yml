@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: campusos-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: campus_admin
+      POSTGRES_PASSWORD: campus_secure_password_2026
+      POSTGRES_DB: campusos_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U campus_admin -d campusos_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: campusos-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://campus_admin:campus_secure_password_2026@postgres:5432/campusos_db
+      JWT_SECRET_KEY: campusos-super-secret-jwt-key-2026-production
+      JWT_ALGORITHM: HS256
+      JWT_EXPIRE_MINUTES: 1440
+      CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+      SIMULATOR_ENABLED: "True"
+      SIMULATOR_INTERVAL_SECONDS: 4
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: campusos-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
+      NEXT_PUBLIC_WS_URL: ws://localhost:8000/ws/telemetry
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:

@@ -1,0 +1,29 @@
+{
+  "model_name": "Campus Grid Load Forecaster",
+  "version": "v2.4.2",
+  "algorithm": "HistGradientBoostingRegressor",
+  "framework": "Scikit-learn 1.5.2",
+  "dataset_samples": 8760,
+  "split_method": "Chronological (80% past / 20% future held-out)",
+  "train_samples": 7008,
+  "test_samples": 1752,
+  "rmse_kw": 12.37,
+  "mae_kw": 9.84,
+  "r2_score": 0.9894,
+  "mape_pct": 1.31,
+  "confidence_interval_margin_95pct": 24.24,
+  "random_split_comparison": {
+    "rmse_kw": 12.35,
+    "mae_kw": 9.78,
+    "r2_score": 0.9964
+  },
+  "nan_robustness_rmse_kw": 34.29,
+  "features": [
+    "hour_of_day",
+    "day_of_week",
+    "is_weekend",
+    "ambient_temp_c",
+    "solar_irradiance_wm2",
+    "occupancy_pct"
+  ]
+}
